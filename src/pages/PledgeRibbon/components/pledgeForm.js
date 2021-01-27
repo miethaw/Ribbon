@@ -31,8 +31,8 @@ export const PledgeForm = (props) => {
           {step === 1
             ? "Choose Your Ribbon and Create Your Message"
             : step === 2
-            ? "Review Your Ribbon"
-            : "Share Your Message"}
+              ? "Review Your Ribbon"
+              : "Share Your Message"}
         </label>
         <br />
         {step === 3 &&
@@ -44,49 +44,49 @@ export const PledgeForm = (props) => {
         ) : step === 3 ? (
           <ShareForms />
         ) : (
-          <div className="form-group row m-0 justify-content-center py-4">
-            <div className="col-6">
-              <NCIS_TextBox
-                placeHolder={step === 2 ? recipientName : "Add Recipient Name"}
-                handleTextChange={_handleTextChange}
-                id={"recipient"}
-                disabled={step === 2 && true}
-              />
-            </div>
-            <div className="col-6">
-              <NCIS_TextBox
-                placeHolder={step === 2 ? senderName : "Add Sender Name"}
-                handleTextChange={_handleTextChange}
-                id={"sender"}
-                disabled={step === 2 && true}
-              />
-            </div>
-            <div className="col-12 py-4">
-              <NCIS_Selector
-                placeHolder={message !== "" ? message : "Select Message"}
-                onClick={step != 2 ? _handleSelect : undefined}
-                menuVisible={menuVisible}
-                _handleSelectOption={_handleSelectOption}
-              />
-            </div>
-            {!menuVisible && step === 1 ? (
-              <NCIS_Button text={"Review"} onClick={_handleReview} />
-            ) : step === 2 ? (
-              <React.Fragment>
-                <NCIS_Button
-                  text={"Edit"}
-                  onClick={_handleEdit}
-                  className="mx-2"
-                />
-                <NCIS_Button
-                  text={"Confirm"}
-                  onClick={_handleConfirm}
-                  className="mx-2"
-                />
-              </React.Fragment>
-            ) : null}
-          </div>
-        )}
+              <div className="form-group row mx-auto justify-content-center py-4" style={{padding: 50}}>
+                <div className="col-6">
+                  <NCIS_TextBox
+                    placeHolder={step === 2 ? recipientName : "Add Recipient Name"}
+                    handleTextChange={_handleTextChange}
+                    id={"recipient"}
+                    disabled={step === 2 && true}
+                  />
+                </div>
+                <div className="col-6">
+                  <NCIS_TextBox
+                    placeHolder={step === 2 ? senderName : "Add Sender Name"}
+                    handleTextChange={_handleTextChange}
+                    id={"sender"}
+                    disabled={step === 2 && true}
+                  />
+                </div>
+                <div className="col-12 py-4">
+                  <NCIS_Selector
+                    placeHolder={message !== "" ? message : "Select Message"}
+                    onClick={step != 2 ? _handleSelect : undefined}
+                    menuVisible={menuVisible}
+                    _handleSelectOption={_handleSelectOption}
+                  />
+                </div>
+                {!menuVisible && step === 1 ? (
+                  <NCIS_Button text={"Review"} onClick={_handleReview} />
+                ) : step === 2 ? (
+                  <React.Fragment>
+                    <NCIS_Button
+                      text={"Edit"}
+                      onClick={_handleEdit}
+                      className="mx-2"
+                    />
+                    <NCIS_Button
+                      text={"Confirm"}
+                      onClick={_handleConfirm}
+                      className="mx-2"
+                    />
+                  </React.Fragment>
+                ) : null}
+              </div>
+            )}
       </form>
     </div>
   );
@@ -96,6 +96,7 @@ const PledgeRibbons = (props) => {
   const { _handleRibbonClick, menuVisible } = props;
   const [selected, setSelected] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
+  const [number, setNumber ] = useState(null);
 
   const PopupDiv = (e) => document.getElementById(e.target.id + "popup");
   const RibbonDiv = (e) => document.getElementById(e.target.id);
@@ -118,13 +119,14 @@ const PledgeRibbons = (props) => {
       _handleRibbonClick(false);
     }
     PopupDiv(e).style.visibility = "hidden";
-    _handleRibbonClick(true);
+    // _handleRibbonClick(true);
   };
 
-  const _handleHover = (e) => {
+  const _handleHover = (e, name, k) => {
     console.log(e.target.id);
+    setNumber(k);
     if (selected === false) {
-      RibbonDiv(e).style.background = "#999999";
+      RibbonDiv(e).style.background = "#cecece";
       if (PopupDiv(e)) {
         PopupDiv(e).style.visibility = "visible";
       } else {
@@ -134,7 +136,7 @@ const PledgeRibbons = (props) => {
   };
   const _handleLeave = (e) => {
     if (selected === false) {
-      RibbonDiv(e).style.background = "none";
+      RibbonDiv(e).style.background = "white";
       RibbonDiv(e).style.color = "#000000";
 
       if (PopupDiv(e)) {
@@ -152,21 +154,24 @@ const PledgeRibbons = (props) => {
             id={k}
             style={{ borderRadius: "50px" }}
             onClick={(e) => _handleClick(e)}
-            onMouseOver={(e) => _handleHover(e, v.name)}
+            onMouseOver={(e) => _handleHover(e, v.name, k)}
             onMouseLeave={(e) => _handleLeave(e, v.name)}
           >
             <img src={v.imgaeUrl} alt="ribbons" style={{ width: 30 }} id={k} />
-            {v.name}
+            <span id={k} style={{ marginTop: 3, marginLeft: 10, fontWeight: '500', position: 'absolute' }}>{v.name}</span>
           </div>
-          <div
-            className="bg-light shadow"
+          {number == k && <div
+            className="shadow"
             id={k + "popup"}
-            style={{ position: "absolute", width: 250, visibility: "hidden" }}
+            style={{ position: "absolute", width: 280, padding: 20, borderRadius: 20, background: 'white', zIndex: 200 }}
             onMouseLeave={(e) => _handleLeave(e)}
             onMouseOver={(e) => _handleHover(e)}
           >
-            Hello
+            <h6 id={k}>{v.name}</h6>
+            <div id={k} style={{fontSize: 12}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.</div>
           </div>
+}
         </div>
       ))}
     </div>

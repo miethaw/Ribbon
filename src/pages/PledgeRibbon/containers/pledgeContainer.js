@@ -40,13 +40,17 @@ export const PledgeContainer = () => {
   };
   console.log(recipientName,senderName,message);
   return (
+    <div>
+      <div id="testsvg">
+        <img src="/pledgeBackground.svg" alt="bg-svg" style={{height: '96vh'}}/>
+      </div>
     <div className="container py-4">
       <div className="row">
-        <div className="col-4">
-          <PledgeCard />
+        <div className="col-4" style={{textAlign: 'center'}}>
+          <PledgeCard recipientName = {recipientName} senderName={senderName} message={message} />
         </div>
 
-        <div className="col-8 py-4">
+        <div className="col-8 py-4" style={{height: '90vh', overflow: 'hidden'}}>
           <PledgeProgress step={step} />
           <PledgeForm
             step={step}
@@ -65,6 +69,7 @@ export const PledgeContainer = () => {
           />
         </div>
       </div>
+    </div>
     </div>
   );
 };

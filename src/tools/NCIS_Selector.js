@@ -28,13 +28,13 @@ export const NCIS_Selector = (props) => {
           marginRight: "20px",
           width: "25px",
           height: "25px",
-          background: "#999999",
+          background: "#efefef",
           textAlign: "center",
           borderRadius: "20px",
           cursor: "pointer",
         }}
       >
-        <i className="fa fa-chevron-down" onClick={onClick}></i>
+        <i className="fa fa-chevron-down" style={{color: '#868686'}} onClick={onClick}></i>
       </span>
       {menuVisible ? (
         <Options
@@ -51,7 +51,7 @@ const Options = (props) => {
   const messageText = messages.map((v, k) => v.message);
 
   const _handleMouseEnter = (e) => {
-    document.getElementById(e.target.id).style.background = "red";
+    document.getElementById(e.target.id).style.background = "#cecece";
   };
   const _handleMouseLeave = (e) => {
     document.getElementById(e.target.id).style.background = "none";
@@ -61,7 +61,7 @@ const Options = (props) => {
     <ul
       className="bg-light shadow mt-2 w-100 py-4"
       style={{
-        borderRadius: 25,
+        borderRadius: 20,
         listStyleType: "none",
         // position: "absolute",
         height: 150,
@@ -69,15 +69,16 @@ const Options = (props) => {
         // top: 0,
         // left: 0,
         margin: 0,
+        padding: 0
       }}
     >
       {messages.map((v1, k1) => (
         <React.Fragment>
-          <li style={{ color: orange, fontWeight: "bold" }}>{v1.title}</li>
+          <li style={{ color: orange, fontWeight: "bold", paddingLeft: 20, paddingTop: 5, paddingBottom: 5  }}>{v1.title}</li>
           <br />
           {v1.message.map((v2, k2) => (
             <p
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer", paddingLeft: 20, paddingTop: 5, paddingBottom: 5, fontWeight: 500 }}
               onMouseEnter={(e) => _handleMouseEnter(e)}
               onMouseLeave={(e) => _handleMouseLeave(e)}
               id={v2.id + v2.text}

@@ -9,37 +9,37 @@ export const Counter = () => {
   return media.mobile || media.tablet ? (
     <CounterMobile TodayDate={TodayDate} />
   ) : (
-    <div
-      className="col-3 text-center"
-      style={{ position: "absolute", right: 4, top: -34 }}
-    >
       <div
-        style={{
-          marginLeft: 50,
-          marginRight: 50,
-          borderBottom: "4px solid white",
-          borderLeft: "4px solid white",
-          borderRight: "4px solid white",
-          position: "relative",
-          top: 74,
-          height: 250,
-        }}
-      />
-      <div class="numbers">
-        <div style={{ top: 10 }}>
-          <span class="digit">$</span>
-          <span class="digit">7</span>
-          <span class="digit">2</span>
-          <span class="digit">5</span>
-          <span class="digit">9</span>
+        className="col-3 text-center"
+        style={{ position: "absolute", right: 4, top: -34 }}
+      >
+        <div
+          style={{
+            marginLeft: 50,
+            marginRight: 50,
+            borderBottom: "4px solid white",
+            borderLeft: "4px solid white",
+            borderRight: "4px solid white",
+            position: "relative",
+            top: 74,
+            height: 250,
+          }}
+        />
+        <div class="numbers">
+          <div style={{ top: 10 }}>
+            <span class="digit">$</span>
+            <span class="digit">7</span>
+            <span class="digit">2</span>
+            <span class="digit">5</span>
+            <span class="digit">9</span>
+          </div>
         </div>
+        <div style={{ fontSize: 23, fontWeight: "bolder" }}>
+          Ribbons Collected
       </div>
-      <div style={{ fontSize: 23, fontWeight: "bolder" }}>
-        Ribbons Collected
+        {TodayDate}
       </div>
-      {TodayDate} 
-    </div>
-  );
+    );
 };
 
 export const CounterMobile = (props) => {
@@ -64,18 +64,27 @@ export const CounterMobile = (props) => {
           boxShadow: "0 0 30px #9f9f9f",
         }}
       >
-        <div class="numbers px-0 pb-3" style={{ paddingTop: "90px" }}>
-          <div style={{ top: 10 }}>
-            <span class="digit">$</span>
-            <span class="digit">7</span>
-            <span class="digit">2</span>
-            <span class="digit">5</span>
-            <span class="digit">9</span>
+        {/* <div style={{
+          marginLeft: 135,
+          background: "#ffffff",
+          width: 250,
+          height: 250,
+          borderRadius: '50%',
+          marginTop: 185,
+          boxShadow: "0 0 30px #9f9f9f"
+        }}> */}
+          <div class="numbers px-0 pb-3" style={{ paddingTop: "90px" }}>
+            <div style={{ top: 10 }}>
+              <span class="digit">$</span>
+              <span class="digit">7</span>
+              <span class="digit">2</span>
+              <span class="digit">5</span>
+              <span class="digit">9</span>
+            </div>
           </div>
+          <strong>Ribbons Collected</strong>
+          <div>{TodayDate}</div>
         </div>
-        <strong>Ribbons Collected</strong>
-        <div>{TodayDate}</div>
       </div>
-    </div>
   );
 };

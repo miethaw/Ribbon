@@ -14,7 +14,7 @@ export const PledgeProgress = (props) => {
     color: "#ffffff",
   };
   return (
-    <div>
+    <div style={{marginTop: 30}}>
       <div
         style={{
           height: 5,
