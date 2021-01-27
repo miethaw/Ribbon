@@ -36,7 +36,7 @@ function App() {
           component={() => <ErrorPage ErrorInfo={"Page Not Found!"} />}
         />
       </Switch>
-      <Footer />
+      {!Media.mobile && <Footer />}
     </MediaQueryProvider>
   );
 }

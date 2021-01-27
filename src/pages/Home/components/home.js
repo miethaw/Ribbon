@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import Jar from "../../../assets/images/Jar.png";
 import Ribbon from "../../../assets/images/Ribbon.png";
 import TabletRibbonBottle from "../../../assets/images/TabletRibbonBottle.png";
+import MobileRibbonBottle from "../../../assets/images/mobileRibbonBottle.png";
 
 import RibbonBottle from "../../../assets/images/RibbonBottle.png";
 import ButtonRibbon from "../../../assets/images/buttonRibbon.png";
@@ -15,43 +16,58 @@ import { NCIS_Button } from "../../../tools/NCIS_Button";
 
 export const Home = (props) => {
   const { media } = props;
-  console.log(media.tablet);
+  console.log(media.tablet, media.desktop);
   return (
-    <div
-      className="row m-0 pt-3 justify-content-between image-fluid"
-      style={{
-        backgroundImage: `url(${media.tablet ? BackgroundTablet : Background})`,
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: media.tablet ? "center" : "none",
-      }}
-    >
-      <HomeTitle media={media} />
-      {media.tablet ? (
-        <div className="col-12 p-0 img-fluid">
-          <div className="row">
-            <div className="w-100">
-              <img src={TabletRibbonBottle} className="img-fluid"/>
-              {/* <img src={Ribbon} className="img-fluid" />
+    <>
+      {
+        (media.desktop || media.tablet) &&
+        <div
+          className="row m-0 pt-3 justify-content-between image-fluid"
+          style={{
+            backgroundImage: `url(${media.tablet ? BackgroundTablet : Background})`,
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: media.tablet ? "center" : "none",
+          }}
+        >
+          <HomeTitle media={media} />
+          {media.tablet ? (
+            <div className="col-12 p-0 img-fluid">
+              <div className="row">
+                <div className="w-100">
+                  <img src={TabletRibbonBottle} className="img-fluid" />
+                  {/* <img src={Ribbon} className="img-fluid" />
             </div>
             <div className="w-50">
               <img src={Jar} className="img-fluid" /> */}
+                </div>
+              </div>
             </div>
-          </div>
+          ) : (
+              <div className="col-lg-11 col-md-12 p-0 img-fluid">
+                <img src={RibbonBottle} className="img-fluid" />
+              </div>
+            )}
+          <Counter />
+          {media.mobile || (
+            <div className="row">
+              <Highlights />
+              <Sponsors />
+            </div>
+          )}
         </div>
-      ) : (
-        <div className="col-lg-11 col-md-12 p-0 img-fluid">
-          <img src={RibbonBottle} className="img-fluid" />
+      }
+      {
+        media.mobile && <div style={{
+          backgroundImage: `url('/backgroundMobile.png')`, backgroundSize: "cover",
+          backgroundRepeat: "no-repeat", height: '100vh'
+        }}>
+          <HomeTitle media={media} />
+          <img src={MobileRibbonBottle} className="img-fluid" style={{bottom: 50, position: 'fixed', right: -16}}/>
+          <Counter />
         </div>
-      )}
-      <Counter />
-      {media.mobile || (
-        <div className="row">
-          <Highlights />
-          <Sponsors />
-        </div>
-      )}
-    </div>
+      }
+    </>
   );
 };
 export default Home;
@@ -61,14 +77,14 @@ const HomeTitle = (props) => {
     <div
       style={{
         position: "absolute",
-        paddingTop: media.tablet ? "10rem" : "11.5rem",
-        paddingLeft: media.tablet ? "7rem" : "11.5rem",
+        paddingTop: media.tablet ? "10rem" : media.mobile ? '6rem' : "11.5rem",
+        paddingLeft: media.tablet ? "7rem" : media.mobile ? '5rem' : "11.5rem",
       }}
       className="text-light col-lg-6 col-md-8"
     >
       <span
         style={{
-          fontSize: media.tablet ? 20 : 30,
+          fontSize: media.tablet ? 20 : media.mobile ? 10 : 30,
           fontWeight: "bold",
           lineHeight: 1,
         }}
@@ -77,7 +93,7 @@ const HomeTitle = (props) => {
       </span>
       <div
         style={{
-          fontSize: media.tablet? 35 : 58,
+          fontSize: media.tablet ? 35 : media.mobile ? 20 : 58,
           fontWeight: "bold",
           color: paleViolet,
           lineHeight: 1,
@@ -87,7 +103,7 @@ const HomeTitle = (props) => {
       </div>
       <div
         style={{
-          fontSize: media.tablet  ? 35 : 58,
+          fontSize: media.tablet ? 35 : media.mobile ? 20 : 58,
           fontWeight: "bold",
           paddingBottom: "100px",
           lineHeight: 1,
@@ -96,13 +112,18 @@ const HomeTitle = (props) => {
         Challenge 2021
       </div>
       <div
-        className="col-7 py-4"
-        style={{ fontSize: 18, fontWeight: "lighter", lineHeight: 1 }}
+        className={media.mobile ? "col-7 ": "col-7 py-4"}
+        style={{ fontSize: media.mobile ? 12 : 18, fontWeight: "lighter", lineHeight: 1 }}
       >
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua.
       </div>
+      {media.mobile ?
+        <div style={{marginTop: 20, marginLeft: -9}}>
       <NCIS_Button text={"Pledge a Ribbon"} icon={ButtonRibbon} />
+      </div> :
+      <NCIS_Button text={"Pledge a Ribbon"} icon={ButtonRibbon} />
+      }
     </div>
   );
 };

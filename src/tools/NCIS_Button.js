@@ -1,4 +1,5 @@
 import React from "react";
+import mediaQueryProvider from "react-media-query-hoc/dist/media-query-provider";
 import { orange } from "../assets/colors";
 
 export const NCIS_Button = (props) => {
@@ -21,7 +22,7 @@ export const NCIS_Button = (props) => {
       onClick={onClick}
     >
               {text}
-      <img src={icon} style={{position:"absolute",width:50,marginTop:-13}}/>
+      <img src={icon} style={{position:"absolute",width:50,marginTop: -13}}/>
     </button>
   );
 };

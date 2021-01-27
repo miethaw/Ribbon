@@ -6,8 +6,10 @@ import { MediaContext } from "react-media-query-hoc";
 export const Counter = () => {
   const TodayDate = moment(Date.now()).format("dddd MMMM DD, YYYY");
   const media = useContext(MediaContext);
-  return media.mobile || media.tablet ? (
-    <CounterMobile TodayDate={TodayDate} />
+  return media.mobile ?
+  <CounterMobile TodayDate={TodayDate} />
+   : media.tablet ? (
+    <CounterTablet TodayDate={TodayDate} />
   ) : (
       <div
         className="col-3 text-center"
@@ -43,6 +45,41 @@ export const Counter = () => {
 };
 
 export const CounterMobile = (props) => {
+  const { TodayDate } = props;
+  const media = useContext(MediaContext);
+  // const tabletAndMobileSize=
+  return (
+    <div
+      className="col-5 text-center"
+      style={{ position: "absolute", bottom: '30%', left:'10%' }}
+    >
+      <div
+        style={{
+          background: "#ffffff",
+          width: 150,
+          height: 150,
+          borderRadius: "50%",
+          boxShadow: "0 0 30px #9f9f9f",
+        }}
+      >
+          <div class="numbers px-0 pb-3" style={{ paddingTop: "50px" }}>
+            <div style={{ top: 10 }}>
+              <span class="digit-mobile">$</span>
+              <span class="digit-mobile">7</span>
+              <span class="digit-mobile">2</span>
+              <span class="digit-mobile">5</span>
+              <span class="digit-mobile">9</span>
+            </div>
+          </div>
+          <strong style={{fontSize: 12}}>Ribbons Collected</strong>
+          <div style={{fontSize: 8}}>{TodayDate}</div>
+        </div>
+      </div>
+  );
+};
+
+
+export const CounterTablet = (props) => {
   const { TodayDate } = props;
   const media = useContext(MediaContext);
   // const tabletAndMobileSize=
