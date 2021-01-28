@@ -9,6 +9,7 @@ import ButtonRibbon from "../../../assets/images/buttonRibbon.png";
 
 import Background from "../../../assets/images/Background.png";
 import BackgroundTablet from "../../../assets/images/BackgroundTablet.png";
+import BackgroundMobile from "../../../assets/images/BackgroundMobile.png";
 
 import { Counter } from "./counter";
 import { paleViolet } from "../../../assets/colors";
@@ -59,7 +60,7 @@ export const Home = (props) => {
       }
       {
         media.mobile && <div style={{
-          backgroundImage: `url('/backgroundMobile.png')`, backgroundSize: "cover",
+          backgroundImage: `url(${BackgroundMobile})`, backgroundSize: "cover",
           backgroundRepeat: "no-repeat", height: '100vh'
         }}>
           <HomeTitle media={media} />
