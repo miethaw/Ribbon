@@ -64,7 +64,8 @@ export const Home = (props) => {
           backgroundRepeat: "no-repeat", height: '100vh'
         }}>
           <HomeTitle media={media} />
-          <img src={MobileRibbonBottle} className="img-fluid" style={{bottom: 50, position: 'fixed', right: -16}}/>
+          <img src={MobileRibbonBottle} style={{bottom: media.cusHeight_700 ? 20 : 50, position: 'fixed', right: -16, height: 'auto', 
+        maxWidth: media.cusHeight_800 ? '100%': media.cusHeight_700 ? '80%' : '77%'}}/>
           <Counter />
         </div>
       }
@@ -106,7 +107,7 @@ const HomeTitle = (props) => {
         style={{
           fontSize: media.tablet ? 35 : media.mobile ? 20 : 58,
           fontWeight: "bold",
-          paddingBottom: "100px",
+          paddingBottom: media.cusHeight_600 ? "60px" : "100px",
           lineHeight: 1,
         }}
       >
@@ -120,7 +121,7 @@ const HomeTitle = (props) => {
         tempor incididunt ut labore et dolore magna aliqua.
       </div>
       {media.mobile ?
-        <div style={{marginTop: 20, marginLeft: -9}}>
+        <div style={{marginTop: 20, marginLeft: media.cusHeight_600 ? -25 : -9}}>
       <NCIS_Button text={"Pledge a Ribbon"} icon={ButtonRibbon} />
       </div> :
       <NCIS_Button text={"Pledge a Ribbon"} icon={ButtonRibbon} />

@@ -1,7 +1,7 @@
 import "./App.css";
 import React from "react";
 import NavBar from "./app/navBar";
-import { Footer } from "./app/footer";
+import Footer from "./app/footer";
 
 import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 import { MediaQueryProvider } from "react-media-query-hoc";
@@ -14,7 +14,10 @@ function App() {
   const Media = {
     mobile: "screen and  (max-width:766px)",
     tablet: "screen and (min-width:768px) and (max-width: 1100px)",
-    desktop: "screen and (min-width:768px) and (max-width: 1920px)",
+    desktop: "screen and (min-width:768px) and (max-width: 3000px)",
+    cusHeight_600: "screen and (min-height: 600px) and (max-height: 699px)",
+    cusHeight_700: "screen and (min-height: 700px) and (max-height: 760px)",
+    cusHeight_800: "screen and (min-height: 761px) and (max-height: 850px)",
   };
 
   return (
@@ -36,7 +39,8 @@ function App() {
           component={() => <ErrorPage ErrorInfo={"Page Not Found!"} />}
         />
       </Switch>
-      {!Media.mobile && <Footer />}
+      
+      <Footer/>
     </MediaQueryProvider>
   );
 }
