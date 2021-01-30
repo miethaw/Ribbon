@@ -147,7 +147,7 @@ const PledgeRibbons = (props) => {
     }
   };
   return (
-    <div className="d-flex fled-row flex-wrap">
+    <div className="d-flex flex-row flex-wrap">
       {RibbonImages.Ribbons.map((v, k) => (
         <div className="w-25  py-1" style={{ cursor: "pointer" }}>
           <div
@@ -178,7 +178,7 @@ const PledgeRibbons = (props) => {
   );
 };
 
-const ThankYouCard = () => {
+export const ThankYouCard = () => {
   return (
     <div
       className="bg-light shadow mt-2 w-100 p-5"
@@ -210,7 +210,7 @@ const ThankYouCard = () => {
   );
 };
 
-const ShareForms = () => {
+export const ShareForms = () => {
   return (
     <div className="row justify-content-center">
       <div

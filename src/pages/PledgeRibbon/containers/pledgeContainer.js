@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { PledgeCard } from "../components/pledgeCard";
 import { PledgeForm } from "../components/pledgeForm";
+import { PledgeFormForMobile } from "../components/PledgeFormForMobile";
 import { PledgeProgress } from "../components/pledgeProgressBar";
+import { withMedia } from "react-media-query-hoc";
 
-export const PledgeContainer = () => {
+const PledgeContainer = props => {
+  const { media } = props
   const [menuVisible, setMenuVisible] = useState(false);
   const [step, setStep] = useState(1);
   const [recipientName, setRecipientName] = useState("");
@@ -18,6 +21,7 @@ export const PledgeContainer = () => {
   };
 
   const _handleReview = (e) => {
+    console.log("step2")
     e.preventDefault();
     setStep(2);
   };
@@ -25,7 +29,7 @@ export const PledgeContainer = () => {
     e.preventDefault();
     setStep(3);
   };
-  const _handleSelectOption=(e)=>{
+  const _handleSelectOption = (e) => {
     setMessage(e)
   }
   const _handleTextChange = (e) => {
@@ -38,38 +42,81 @@ export const PledgeContainer = () => {
   const _handleRibbonClick = (state) => {
     setMenuVisible(state);
   };
-  console.log(recipientName,senderName,message);
+  let background = (media.desktop || media.tablet) ? "/pledgeBackground.svg" : "/PledgeBgMobo.png";
+  console.log(recipientName, senderName, message);
   return (
-    <div>
+    <div >
       <div id="testsvg">
-        <img src="/pledgeBackground.svg" alt="bg-svg" style={{height: '96vh'}}/>
+        <img className="img-resposive" src={background} alt="bg-svg" style={{height:(media.desktop || media.tablet) && '96vh'}} />
       </div>
-    <div className="container py-4">
-      <div className="row">
-        <div className="col-4" style={{textAlign: 'center'}}>
-          <PledgeCard recipientName = {recipientName} senderName={senderName} message={message} />
-        </div>
+      <div className="container py-4 position-absolute">
+        {
+          (media.desktop || media.tablet) ?
+            <div className="row">
+              <div className="col-4" style={{ textAlign: 'center' }}>
+                <PledgeCard recipientName={recipientName} senderName={senderName} message={message} media={media} />
+              </div>
 
-        <div className="col-8 py-4" style={{height: '90vh', overflow: 'hidden'}}>
-          <PledgeProgress step={step} />
-          <PledgeForm
-            step={step}
-            _handleConfirm={_handleConfirm}
-            _handleEdit={_handleEdit}
-            _handleTextChange={_handleTextChange}
-            _handleReview={_handleReview}
-            handleTextChange={_handleTextChange}
-            _handleSelect={_handleSelect}
-            _handleSelectOption={_handleSelectOption}
-            recipientName={recipientName}
-            message={message}
-            senderName={senderName}
-            menuVisible={menuVisible}
-            _handleRibbonClick={_handleRibbonClick}
-          />
-        </div>
+              <div className="col-8 py-4" style={{ height: '90vh', overflow: 'hidden' }}>
+                <PledgeProgress step={step} media={media} />
+                <PledgeForm
+                  step={step}
+                  _handleConfirm={_handleConfirm}
+                  _handleEdit={_handleEdit}
+                  _handleTextChange={_handleTextChange}
+                  _handleReview={_handleReview}
+                  handleTextChange={_handleTextChange}
+                  _handleSelect={_handleSelect}
+                  _handleSelectOption={_handleSelectOption}
+                  recipientName={recipientName}
+                  message={message}
+                  senderName={senderName}
+                  menuVisible={menuVisible}
+                  _handleRibbonClick={_handleRibbonClick}
+                />
+              </div>
+            </div> :
+            <div>
+
+              <PledgeProgress step={step} media={media} />
+              <PledgeFormForMobile
+                step={step}
+                 media={media}
+                _handleConfirm={_handleConfirm}
+                _handleEdit={_handleEdit}
+                _handleTextChange={_handleTextChange}
+                _handleReview={_handleReview}
+                handleTextChange={_handleTextChange}
+                _handleSelect={_handleSelect}
+                _handleSelectOption={_handleSelectOption}
+                recipientName={recipientName}
+                message={message}
+                senderName={senderName}
+                menuVisible={menuVisible} recipientName={recipientName} senderName={senderName} message={message}
+                _handleRibbonClick={_handleRibbonClick} />
+                
+              {/*<PledgeForm
+                step={step}
+                _handleConfirm={_handleConfirm}
+                _handleEdit={_handleEdit}
+                _handleTextChange={_handleTextChange}
+                _handleReview={_handleReview}
+                handleTextChange={_handleTextChange}
+                _handleSelect={_handleSelect}
+                _handleSelectOption={_handleSelectOption}
+                recipientName={recipientName}
+                message={message}
+                senderName={senderName}
+                menuVisible={menuVisible}
+                _handleRibbonClick={_handleRibbonClick}
+              />
+                */}
+            </div>
+
+        }
+
       </div>
-    </div>
     </div>
   );
 };
+export default withMedia(PledgeContainer)

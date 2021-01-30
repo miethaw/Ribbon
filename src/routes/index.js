@@ -1,7 +1,7 @@
 import ChallengeContainer from "../pages/Challenge/container/challengeContainer";
 import EventContainer from "../pages/Event/container/eventContainer";
 import JarContainer from "../pages/Jars/container/jarContainer";
-import { PledgeContainer } from "../pages/PledgeRibbon/containers/pledgeContainer";
+import PledgeContainer from "../pages/PledgeRibbon/containers/pledgeContainer";
 import { PrivacyContainer, TermContainer } from "../pages/Privacy/container/privacyAndTermsContainer";
 import RibbonContainer from "../pages/Ribbon/container/ribbonContainer";
 

@@ -2,17 +2,18 @@ import React from "react";
 import { paleViolet, violet } from "../../../assets/colors";
 
 export const PledgeProgress = (props) => {
-  const {step}=props
+  const {step, media }=props
   console.log(step);
   const circleStyle = {
-    width: 40,
-    height: 40,
+    width:( media.desktop || media.tablet ) ? 40 : 30,
+    height: ( media.desktop || media.tablet ) ? 40 : 30,
     borderRadius: "50%",
     lineHeight: 2,
     textAlign: "center",
     fontSize: 19,
     color: "#ffffff",
   };
+  console.log(">>>",media)
   return (
     <div style={{marginTop: 30}}>
       <div

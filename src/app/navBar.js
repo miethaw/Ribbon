@@ -15,7 +15,7 @@ const NavBar = (props) => {
       <a className="navbar-brand" href="/">
         <img src={Logo} alt="logo" height='30'/>
       </a>
-      <div className="d-flex flex-row w-50 justify-content-end">
+      <div className="d-flex flex-row justify-content-end">
         <div
           className="collapse navbar-collapse w-25 justify-content-end"
           id="navbarSupportedContent"
