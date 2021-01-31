@@ -4,6 +4,7 @@ import { PledgeForm } from "../components/pledgeForm";
 import { PledgeFormForMobile } from "../components/PledgeFormForMobile";
 import { PledgeProgress } from "../components/pledgeProgressBar";
 import { withMedia } from "react-media-query-hoc";
+import PledgeRibbonsForMobile from "../components/PledgeRibbonForMobile";
 
 const PledgeContainer = props => {
   const { media } = props
@@ -45,19 +46,19 @@ const PledgeContainer = props => {
   let background = (media.desktop || media.tablet) ? "/pledgeBackground.svg" : "/PledgeBgMobo.png";
   console.log(recipientName, senderName, message);
   return (
-    <div >
+    <div className='d-flex justify-content-center aling-self-center'>
       <div id="testsvg">
-        <img className="img-resposive" src={background} alt="bg-svg" style={{height:(media.desktop || media.tablet) && '96vh'}} />
+        <img className="img-fluid" src={background} alt="bg-svg" style={{ height: (media.desktop || media.tablet) ? '96vh' : '100vh' }} />
       </div>
-      <div className="container py-4 position-absolute">
+      <div className="col-10 pt-4">
         {
           (media.desktop || media.tablet) ?
-            <div className="row">
-              <div className="col-4" style={{ textAlign: 'center' }}>
+            <div className="row px-0 ">
+              <div className="d-flex justify-content-start col-4 pr-5 align-self-start border border-danger" style={{ textAlign: 'center' }}>
                 <PledgeCard recipientName={recipientName} senderName={senderName} message={message} media={media} />
               </div>
 
-              <div className="col-8 py-4" style={{ height: '90vh', overflow: 'hidden' }}>
+              <div className="col-8 pt-4" style={{ height: '90vh', overflow: 'hidden' }}>
                 <PledgeProgress step={step} media={media} />
                 <PledgeForm
                   step={step}
@@ -73,44 +74,30 @@ const PledgeContainer = props => {
                   senderName={senderName}
                   menuVisible={menuVisible}
                   _handleRibbonClick={_handleRibbonClick}
+                  media={media}
                 />
               </div>
             </div> :
-            <div>
+            <div className='d-flex justify-content-center'>
+              <div className=''>
+                <PledgeProgress step={step} media={media} />
+                <PledgeRibbonsForMobile step={step}
+                  media={media}
+                  _handleConfirm={_handleConfirm}
+                  _handleEdit={_handleEdit}
+                  _handleTextChange={_handleTextChange}
+                  _handleReview={_handleReview}
+                  handleTextChange={_handleTextChange}
+                  _handleSelect={_handleSelect}
+                  _handleSelectOption={_handleSelectOption}
+                  recipientName={recipientName}
+                  message={message}
+                  senderName={senderName}
+                  menuVisible={menuVisible} recipientName={recipientName} senderName={senderName} message={message}
+                  _handleRibbonClick={_handleRibbonClick} />
+              </div>
 
-              <PledgeProgress step={step} media={media} />
-              <PledgeFormForMobile
-                step={step}
-                 media={media}
-                _handleConfirm={_handleConfirm}
-                _handleEdit={_handleEdit}
-                _handleTextChange={_handleTextChange}
-                _handleReview={_handleReview}
-                handleTextChange={_handleTextChange}
-                _handleSelect={_handleSelect}
-                _handleSelectOption={_handleSelectOption}
-                recipientName={recipientName}
-                message={message}
-                senderName={senderName}
-                menuVisible={menuVisible} recipientName={recipientName} senderName={senderName} message={message}
-                _handleRibbonClick={_handleRibbonClick} />
-                
-              {/*<PledgeForm
-                step={step}
-                _handleConfirm={_handleConfirm}
-                _handleEdit={_handleEdit}
-                _handleTextChange={_handleTextChange}
-                _handleReview={_handleReview}
-                handleTextChange={_handleTextChange}
-                _handleSelect={_handleSelect}
-                _handleSelectOption={_handleSelectOption}
-                recipientName={recipientName}
-                message={message}
-                senderName={senderName}
-                menuVisible={menuVisible}
-                _handleRibbonClick={_handleRibbonClick}
-              />
-                */}
+
             </div>
 
         }

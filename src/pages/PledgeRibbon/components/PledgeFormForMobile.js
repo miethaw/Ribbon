@@ -158,20 +158,7 @@ const PledgeRibbonsForMobile = props => {
         <ThankYouCard />
       ) : step === 3 ? (
         <ShareForms />
-      ) : step === 2 ? (
-        <React.Fragment>
-          <NCIS_Button
-            text={"Edit"}
-            onClick={_handleEdit}
-            className="mx-2"
-          />
-          <NCIS_Button
-            text={"Confirm"}
-            onClick={_handleConfirm}
-            className="mx-2"
-          />
-        </React.Fragment>
-      ): (
+      ) : (
             <>
             {
               goNext &&
@@ -207,6 +194,22 @@ const PledgeRibbonsForMobile = props => {
             }
             </>
           )}
+           {
+             step == 2 && (
+              <>
+                <NCIS_Button
+                  text={"Edit"}
+                  onClick={_handleEdit}
+                  className="mx-2"
+                />
+                <NCIS_Button
+                  text={"Confirm"}
+                  onClick={_handleConfirm}
+                  className="mx-2"
+                />
+              </>
+            )
+           }
     </div>
 
 

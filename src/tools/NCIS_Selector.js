@@ -3,7 +3,7 @@ import { orange, violet } from "../assets/colors";
 import Messages from "../assets/Messages.json";
 
 export const NCIS_Selector = (props) => {
-  const { placeHolder, onClick, menuVisible, _handleSelectOption } = props;
+  const { placeHolder, onClick, menuVisible, _handleSelectOption, media } = props;
   return (
     <div onClick={onClick}>
       <input
@@ -17,6 +17,7 @@ export const NCIS_Selector = (props) => {
           // border:"red",
           background: "#ffffff",
           cursor: "pointer",
+          fontSize : media.mobile ? 14 : window.innerWidth > 1500 ? 25 : 18 ,
         }}
       />
       <span
@@ -74,11 +75,11 @@ const Options = (props) => {
     >
       {messages.map((v1, k1) => (
         <React.Fragment>
-          <li style={{ color: orange, fontWeight: "bold", paddingLeft: 20, paddingTop: 5, paddingBottom: 5  }}>{v1.title}</li>
+          <li style={{ color: orange, fontWeight: "bold", paddingLeft: 20, paddingTop: 5, paddingBottom: 5 , fontSize: window.innerWidth > 1500 ? 24 : 18 }}>{v1.title}</li>
           <br />
           {v1.message.map((v2, k2) => (
             <p
-              style={{ cursor: "pointer", paddingLeft: 20, paddingTop: 5, paddingBottom: 5, fontWeight: 500 }}
+              style={{ cursor: "pointer", paddingLeft: 20, paddingTop: 5, paddingBottom: 5, fontWeight: 500, fontSize: window.innerWidth > 1500 ? 22 : 18 }}
               onMouseEnter={(e) => _handleMouseEnter(e)}
               onMouseLeave={(e) => _handleMouseLeave(e)}
               id={v2.id + v2.text}

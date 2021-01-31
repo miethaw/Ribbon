@@ -3,15 +3,15 @@ import mediaQueryProvider from "react-media-query-hoc/dist/media-query-provider"
 import { orange } from "../assets/colors";
 
 export const NCIS_Button = (props) => {
-    const {text,icon,onClick,className,buttonColor}=props
+    const {text,icon,onClick,className,buttonColor, fontSize }=props
   return (
     <button
-      className={`btn text-light ${className}`}
+      className={`btn text-light ${className} py-2`}
       style={{
         background: buttonColor||orange,
         borderRadius: 50,
-        fontSize: "14px",
-        width: icon?"190px":"170px",
+        fontSize : fontSize ? fontSize : 14,
+        width: icon?"190px":"140px",
         // textAlign:icon&&"left"
       }}
       data-toggle="collapse"

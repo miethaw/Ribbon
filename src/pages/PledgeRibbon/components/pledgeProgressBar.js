@@ -10,7 +10,7 @@ export const PledgeProgress = (props) => {
     borderRadius: "50%",
     lineHeight: 2,
     textAlign: "center",
-    fontSize: 19,
+    fontSize: media.mobile ? 13 : 19,
     color: "#ffffff",
   };
   console.log(">>>",media)
@@ -28,13 +28,13 @@ export const PledgeProgress = (props) => {
       />
 
       <div className="row m-0 justify-content-between">
-        <div className="col-4" style={{...circleStyle,background:step===1?violet:paleViolet}}>
+        <div className="col-3" style={{...circleStyle,background:step===1?violet:paleViolet}}>
           1
         </div>
-        <div className="col-4" style={{...circleStyle,background:step===2?violet:paleViolet}}>
+        <div className="col-3" style={{...circleStyle,background:step===2?violet:paleViolet}}>
           2
         </div>
-        <div className="col-4" style={{...circleStyle,background:step===3?violet:paleViolet}}>
+        <div className="col-3" style={{...circleStyle,background:step===3?violet:paleViolet}}>
           3
         </div>
       </div>

@@ -19,10 +19,11 @@ export const PledgeForm = (props) => {
     recipientName,
     senderName,
     message,
+    media
   } = props;
 
   return (
-    <div className="py-5">
+    <div className="py-4">
       <form>
         <div>
           <strong>{`Step ${step}:`}</strong>
@@ -45,20 +46,22 @@ export const PledgeForm = (props) => {
           <ShareForms />
         ) : (
               <div className="form-group row mx-auto justify-content-center py-4" style={{padding: 50}}>
-                <div className="col-6">
+                <div className="col-6 py-2">
                   <NCIS_TextBox
                     placeHolder={step === 2 ? recipientName : "Add Recipient Name"}
                     handleTextChange={_handleTextChange}
                     id={"recipient"}
                     disabled={step === 2 && true}
+                    media={media}
                   />
                 </div>
-                <div className="col-6">
+                <div className="col-6 ">
                   <NCIS_TextBox
                     placeHolder={step === 2 ? senderName : "Add Sender Name"}
                     handleTextChange={_handleTextChange}
                     id={"sender"}
                     disabled={step === 2 && true}
+                    media={media}
                   />
                 </div>
                 <div className="col-12 py-4">
@@ -67,23 +70,26 @@ export const PledgeForm = (props) => {
                     onClick={step != 2 ? _handleSelect : undefined}
                     menuVisible={menuVisible}
                     _handleSelectOption={_handleSelectOption}
+                    media={media}
                   />
                 </div>
                 {!menuVisible && step === 1 ? (
-                  <NCIS_Button text={"Review"} onClick={_handleReview} />
+                  <NCIS_Button text={"Review"} onClick={_handleReview} fontSize={ window.innerWidth > 1500 ? 25 : 18 } />
                 ) : step === 2 ? (
-                  <React.Fragment>
+                  <div className='py-3 d-flex justify-content-center'>
                     <NCIS_Button
                       text={"Edit"}
                       onClick={_handleEdit}
+                      fontSize={ window.innerWidth > 1500 ? 25 : 18 }
                       className="mx-2"
                     />
                     <NCIS_Button
                       text={"Confirm"}
                       onClick={_handleConfirm}
+                      fontSize={ window.innerWidth > 1500 ? 25 : 18 }
                       className="mx-2"
                     />
-                  </React.Fragment>
+                  </div>
                 ) : null}
               </div>
             )}
@@ -149,16 +155,17 @@ const PledgeRibbons = (props) => {
   return (
     <div className="d-flex flex-row flex-wrap">
       {RibbonImages.Ribbons.map((v, k) => (
-        <div className="w-25  py-1" style={{ cursor: "pointer" }}>
+        <div className="w-25  align-items-center py-1" style={{ cursor: "pointer" }}>
           <div
+          className="d-flex py-2"
             id={k}
             style={{ borderRadius: "50px" }}
             onClick={(e) => _handleClick(e)}
             onMouseOver={(e) => _handleHover(e, v.name, k)}
             onMouseLeave={(e) => _handleLeave(e, v.name)}
           >
-            <img src={v.imgaeUrl} alt="ribbons" style={{ width: 30 }} id={k} />
-            <span id={k} style={{ marginTop: 3, marginLeft: 10, fontWeight: '500', position: 'absolute' }}>{v.name}</span>
+            <img src={v.imgaeUrl} alt="ribbons" style={{ width: window.innerWidth > 1500 ? 50 : 30 }} id={k} />
+            <span id={k} style={{ marginTop: 3, marginLeft: 10, fontWeight: '500',fontSize : window.innerWidth > 1500 ? 25: 18}}>{v.name}</span>
           </div>
           {number == k && <div
             className="shadow"
