@@ -5,7 +5,7 @@ import Home from "../components/home";
 const HomeContainer = ({ media, ...props }) => {
   return (
     <div className="container-0">
-      <Home media={media} />
+      <Home media={media} history={props.history} />
     </div>
   );
 };

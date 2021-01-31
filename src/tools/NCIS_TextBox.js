@@ -11,7 +11,7 @@ export const NCIS_TextBox = (props) => {
       type="text"
       className="form-control shadow px-4 py-2"
       placeholder={placeHolder}
-      style={{ borderRadius: 20, background: "#ffffff", border: "none", fontSize : media.mobile ? 14 : window.innerWidth > 1500 ? 25 : 18 , color : '#f9f9f9'}}
+      style={{ borderRadius: 20, background: "#ffffff", border: "none", fontSize : media.mobile ? 14 : window.innerWidth > 1500 ? 25 : 18}}
     />
   );
 };

@@ -118,17 +118,17 @@ div.circTxt {
     -o-transform: translate(0, -200px);
 }
   50% {
-    transform: translate(0, -140px);
-    -webkit-transform: translate(0, -140px);
-    -moz-transform: translate(0, -140px);
-    -ms-transform: translate(0, -140px);
-    -o-transform: translate(0, -140px);
+    transform: translate(0, -110px);
+    -webkit-transform: translate(0, -110px);
+    -moz-transform: translate(0, -110px);
+    -ms-transform: translate(0, -110px);
+    -o-transform: translate(0, -110px);
 }
   100% {
-    transform: translate(0, -140px);
-    -webkit-transform: translate(0, -140px);
-    -moz-transform: translate(0, -140px);
-    -ms-transform: translate(0, -140px);
-    -o-transform: translate(0, -140px);
+    transform: translate(0, -110px);
+    -webkit-transform: translate(0, -110px);
+    -moz-transform: translate(0, -110px);
+    -ms-transform: translate(0, -110px);
+    -o-transform: translate(0, -110px);
 }
 }

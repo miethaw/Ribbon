@@ -100,6 +100,7 @@ const Ribbons = props => {
     const [number, setNumber] = useState(null);
     const [imgUrl, setImgUrl] = useState([]);
     const [cancerName, setCancerName] = useState(null);
+    const [ close , setClose ]=useState(true)
 
     const PopupDiv = (e) => document.getElementById(e.target.id + "popup");
     const RibbonDiv = (e) => document.getElementById(e.target.id);
@@ -115,6 +116,7 @@ const Ribbons = props => {
         setNumber(k)
         setImgUrl(imgaeUrl)
         setCancerName(name)
+        setClose(true)
 
         if (selected === false) {
             RibbonDiv(e).style.background = "#cecece";
@@ -168,6 +170,7 @@ const Ribbons = props => {
                     <div className="d-flex flex-row flex-wrap justify-content-center px-1">
                         {RibbonImages.Ribbons.map((v, k) => (
                             <div className="col-4 " style={{ cursor: "pointer" }}>
+                                
                                 <div className='text-center'
                                     id={k}
                                     style={{ borderRadius: "10px", minHeight: 70 }}
@@ -178,14 +181,19 @@ const Ribbons = props => {
                                     <img src={v.imgaeUrl} alt="ribbons" style={{ width: 40 }} id={k} />
                                     <div className='d-flex justify-content-center text-center' id={k} style={{ textAlign: 'center', marginTop: 3, fontWeight: '500', fontSize: 12, position: 'absolute', width: 120 }}>{v.name}</div>
                                 </div>
-                                {number == k && <div
-                                    className="shadow"
+                                {(number == k && close) && <div
+                                    className="shadow pt-2"
                                     id={k + "popup"}
                                     style={{ position: "absolute", maxWidth: 200, padding: 20, borderRadius: 20, background: 'white', zIndex: 200 }}
                                 // onMouseLeave={(e) => _handleLeave(e)}
                                 // onMouseOver={(e) => _handleHover(e)}
                                 >
-                                    <h6 id={k}>{v.name}</h6>
+                                    <div className='d-flex justify-content-between p-0'>
+                                    <h6 className='pt-2' id={k}>{v.name}</h6>
+                                    <i className="fa fa-times align-self-start " onClick={()=>setClose(false)}></i>
+
+                                    </div>
+                                    
                                     <div id={k} style={{ fontSize: 12 }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
             tempor incididunt ut labore et dolore magna aliqua.</div>
                                 </div>

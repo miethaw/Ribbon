@@ -1,4 +1,6 @@
 import React, { useContext } from "react";
+import { Link, withRouter } from "react-router-dom";
+
 import Jar from "../../../assets/images/Jar.png";
 import Ribbon from "../../../assets/images/Ribbon.png";
 import TabletRibbonBottle from "../../../assets/images/TabletRibbonBottle.png";
@@ -15,17 +17,21 @@ import { Counter } from "./counter";
 import { paleViolet } from "../../../assets/colors";
 import { NCIS_Button } from "../../../tools/NCIS_Button";
 
-export const Home = (props) => {
+const Home = (props) => {
   const { media } = props;
-  console.log(media.tablet, media.desktop);
+  console.log(props);
+  const _handlePledge = () => {
+    props.history.push("/pledge_a_ribbon");
+  };
   return (
     <>
-      {
-        (media.desktop || media.tablet) &&
+      {(media.desktop || media.tablet) && (
         <div
           className="row m-0 pt-3 justify-content-between image-fluid"
           style={{
-            backgroundImage: `url(${media.tablet ? BackgroundTablet : Background})`,
+            backgroundImage: `url(${
+              media.tablet ? BackgroundTablet : Background
+            })`,
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
             backgroundPosition: media.tablet ? "center" : "none",
@@ -36,6 +42,21 @@ export const Home = (props) => {
             <div className="col-12 p-0 img-fluid">
               <div className="row">
                 <div className="w-100">
+                  <div
+                    className=""
+                    style={{
+                      position: "absolute",
+                      zIndex: 1,
+                      top: "37%",
+                      left: "10%",
+                    }}
+                  >
+                    <NCIS_Button
+                      text={"Pledge a Ribbon"}
+                      icon={ButtonRibbon}
+                      onClick={_handlePledge}
+                    />
+                  </div>
                   <img src={TabletRibbonBottle} className="img-fluid" />
                   {/* <img src={Ribbon} className="img-fluid" />
             </div>
@@ -45,10 +66,25 @@ export const Home = (props) => {
               </div>
             </div>
           ) : (
-              <div className="col-lg-11 col-md-12 p-0 img-fluid">
-                <img src={RibbonBottle} className="img-fluid" />
+            <div className="col-lg-11 col-md-12 p-0 img-fluid">
+              <div
+                className=""
+                style={{
+                  position: "absolute",
+                  zIndex: 1,
+                  top:window.innerWidth > 1500 ? "53%" : "63%",
+                  left: "10%",
+                }}
+              >
+                <NCIS_Button
+                  text={"Pledge a Ribbon"}
+                  icon={ButtonRibbon}
+                  onClick={_handlePledge}
+                />
               </div>
-            )}
+              <img src={RibbonBottle} className="img-fluid" />
+            </div>
+          )}
           <Counter />
           {media.mobile || (
             <div className="row">
@@ -57,30 +93,53 @@ export const Home = (props) => {
             </div>
           )}
         </div>
-      }
-      {
-        media.mobile && <div style={{
-          backgroundImage: `url(${BackgroundMobile})`, backgroundSize: "cover",
-          backgroundRepeat: "no-repeat", height: '100vh'
-        }}>
-          <HomeTitle media={media} />
-          <img src={MobileRibbonBottle} style={{bottom: media.cusHeight_700 ? 20 : 50, position: 'fixed', right: -16, height: 'auto', 
-        maxWidth: media.cusHeight_800 ? '100%': media.cusHeight_700 ? '80%' : '77%'}}/>
+      )}
+      {media.mobile && (
+        <div
+          style={{
+            backgroundImage: `url(${BackgroundMobile})`,
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            height: "100vh",
+          }}
+        >
+          <HomeTitle media={media} _handlePledge={_handlePledge} />
+          <div className="d-flex justify-content-end pt-1">
+            <img
+              src={MobileRibbonBottle}
+              style={{
+                bottom: media.cusHeight_700 ? 20 : 50,
+                position: "fixed",
+                right: -16,
+                height: "auto",
+                maxWidth: media.cusHeight_800
+                  ? "70%"
+                  : media.cusHeight_700
+                  ? "63%"
+                  : (window.innerWidth >390 && window.innerWidth < 409) ?
+                  "50%"
+                  
+                  : "56%",
+              }}
+            />
+          </div>
+
           <Counter />
         </div>
-      }
+      )}
     </>
   );
 };
-export default Home;
+export default withRouter(Home);
 const HomeTitle = (props) => {
-  const { media } = props;
+  const { media, _handlePledge } = props;
+
   return (
     <div
       style={{
         position: "absolute",
-        paddingTop: media.tablet ? "10rem" : media.mobile ? '6rem' : "11.5rem",
-        paddingLeft: media.tablet ? "7rem" : media.mobile ? '5rem' : "11.5rem",
+        paddingTop: media.tablet ? "10rem" : media.mobile ? "6rem" : "11.5rem",
+        paddingLeft: media.tablet ? "7rem" : media.mobile ? "5rem" : "11.5rem",
       }}
       className="text-light col-lg-6 col-md-8"
     >
@@ -114,18 +173,33 @@ const HomeTitle = (props) => {
         Challenge 2021
       </div>
       <div
-        className={media.mobile ? "col-7 ": "col-7 py-4"}
-        style={{ fontSize: media.mobile ? 12 : 18, fontWeight: "lighter", lineHeight: 1 }}
+        className={media.mobile ? "col-7 " : "col-7 py-4"}
+        style={{
+          fontSize: media.mobile ? 12 : 18,
+          fontWeight: "lighter",
+          lineHeight: 1,
+        }}
       >
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua.
       </div>
-      {media.mobile ?
-        <div style={{marginTop: 20, marginLeft: media.cusHeight_600 ? -25 : -9}}>
-      <NCIS_Button text={"Pledge a Ribbon"} icon={ButtonRibbon} />
-      </div> :
-      <NCIS_Button text={"Pledge a Ribbon"} icon={ButtonRibbon} />
-      }
+      {media.mobile ? (
+        <div style={{ marginTop: 20 }}>
+          <NCIS_Button
+            text={"Pledge a Ribbon"}
+            icon={ButtonRibbon}
+            onClick={_handlePledge}
+          />
+        </div>
+      ) : (
+        <div style={{ position: "absolute", zIndex: 1000 }}>
+          {/* <NCIS_Button
+            text={"Pledge a Ribbon"}
+            icon={ButtonRibbon}
+            onClick={_handlePledge}
+          /> */}
+        </div>
+      )}
     </div>
   );
 };

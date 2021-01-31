@@ -46,7 +46,7 @@ const PledgeContainer = props => {
   let background = (media.desktop || media.tablet) ? "/pledgeBackground.svg" : "/PledgeBgMobo.png";
   console.log(recipientName, senderName, message);
   return (
-    <div className='d-flex justify-content-center aling-self-center'>
+    <div className='d-flex justify-content-center aling-self-center pt-3'>
       <div id="testsvg">
         <img className="img-fluid" src={background} alt="bg-svg" style={{ height: (media.desktop || media.tablet) ? '96vh' : '100vh' }} />
       </div>
